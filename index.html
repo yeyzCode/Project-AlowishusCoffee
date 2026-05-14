@@ -8,12 +8,18 @@
   <!-- Remixicon CDN -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
   
+  <!-- Alpinejs CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <!-- App js -->
+  <script src="src/app.js"></script>
+  
   <!-- Styling CSS -->
   <link rel="stylesheet" href="dist/css/style.css" />
   
   <title>Alowishus</title>
 </head>
-<body>
+<body x-data="products()">
   <!-- Navbar Section -->
   <header class="navbar">
     <div class="container">
@@ -37,9 +43,16 @@
           </li>
         </ul>
         <div class="navbar-extra">
-          <a href="" class="navbar-icon-cart"><i class="ri-shopping-cart-2-line"></i>
-          <a href="" class="btn-voucher">BUY GIFT VOUCHER</a>
+          <a id="search-btn" href="#" class="navbar-icon-search"><i class="ri-search-line"></i></a>
+          <a id="cart-btn" href="#" class="navbar-icon-cart"><i class="ri-shopping-cart-2-line"></i></a>
+          <a href="#" class="btn-voucher">BUY GIFT VOUCHER</a>
           <i id="menu-bars" class="ri-menu-3-line"></i>
+        </div>
+        
+        <!-- Navbar Search -->
+        <div class="search-form">
+          <input id="search-input" type="search" placeholder="Search Here" />
+          <label for="search-input"><i class="ri-search-line"></i></label>
         </div>
       </div>
     </div>
@@ -58,8 +71,8 @@
             Find your perfect brew and enjoy every moment with Coffeque.
           </p>
           <div class="hero-buttons">
-            <a href="" class="btn-orders-now">Orders Now</a>
-            <a href="" class="btn-contact-us">Contact Us</a>
+            <a href="#product" class="btn-orders-now">Orders Now</a>
+            <a href="#contact" class="btn-contact-us">Contact Us</a>
           </div>
         </div>
         <img src="assets/images/hero-img-coffee.png" alt="" class="hero-img">
@@ -110,7 +123,7 @@
           <img src="assets/images/about-img-coffee.jpg" alt="About Images" class="about-img">
           <div class="about-text">
             <h2 class="about-title">Order Your Favorite Coffee</h2>
-            <p class="about-paragraf">Whether you need a boost to start your day or just want to relax, we’re here to make your coffee moments better. With a cozy atmosphere and a passion for great coffee, we aim to be your favorite place to unwind and recharge.
+            <p class="about-paragraf">Whether you need a boost to start your day or simply want a cozy place to relax, Alowishus is here to make every coffee moment feel special. We carefully select high-quality coffee beans and craft every cup with passion, ensuring rich flavor and unforgettable aroma in every sip.<br /><br />Beyond coffee, we also offer delicious food, refreshing beverages, and warm hospitality designed to create a comfortable and welcoming atmosphere for everyone.<br /><br />Our mission is not only to serve great coffee, but also to become a place where people can connect, work, study, or spend meaningful time together. With modern service, premium ingredients, and attention to detail, Alowishus aims to deliver an experience that feels both relaxing and memorable for every customer who visits.
             </p>
             <a href="" class="btn-about-orders-now">ORDERS NOW</a>
           </div>
@@ -124,177 +137,32 @@
       <div class="product-box">
         <h2 class="section-title">Best Selling Coffee</h2>
         <p class="section-subtitle">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Enjoy our most loved coffee selections crafted with rich flavor, smooth texture, and premium quality
         </p>
         <div class="product-details">
+          <template x-for="(item, index) in items" :key="index">
           <div class="product-card">
+            <div class="product-view-box">
+              <a href="#" class="product-view-details"><i class="ri-eye-line"></i></a>
+              <a href="#" class="view-btn" @click.prevent="open = true">View Details</a>
+            </div>
             <div class="product-img-item">
               <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Double <br /> Espresso
-              </h3>
+              <h3 class="product-img-title" x-text="item.name"></h3>
             </div>
             <div class="product-subtitle-list">
               <p class="product-subtitle">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
               </p>
               <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
+                <a href="" class="product-price" x-text="item.price"></a>
                 <a href="" class="product-btn">
-                  Orders Now
+                  <i class="ri-shopping-cart-2-line"></i>
                 </a>
               </div>
             </div>
           </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Caramel <br /> Frappe
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Latte <br /> Cream
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Royal <br /> Beans
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Velvet <br /> Coffee
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Vanilla <br /> Dream
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Choco <br /> Latte
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="product-card">
-            <div class="product-img-item">
-              <img src="assets/images/product-img-coffee.png" alt="Product Images" class="product-img">
-              <h3 class="product-img-title">
-                Iced <br /> Coffee
-              </h3>
-            </div>
-            <div class="product-subtitle-list">
-              <p class="product-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos, rerum!
-              </p>
-              <div class="product-price-button">
-                <a href="" class="product-price">
-                  $59.99
-                </a>
-                <a href="" class="product-btn">
-                  Orders Now
-                </a>
-              </div>
-            </div>
-          </div>
+          </template>
         </div>
       </div>
     </div>
@@ -309,7 +177,7 @@
             At Your Home
           </h2>
           <p class="promo-subtitle">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus ipsam aut, voluptatem, rem itaque provident.
+            Start your morning with rich flavors and fresh brewed coffee made to lift your mood and energize your day. Crafted with premium beans and served instantly for your comfort at home.
           </p>
           <a href="" class="promo-btn">
             Try It Now
@@ -363,7 +231,7 @@
         <p class="copyright-text">created by yeyzCode © 2026</p>
         
         <div class="social-link-list">
-          <a href="#" class="social-link"><i class="ri-facebook-circle-fill"></i></i></a>
+          <a href="#" class="social-link"><i class="ri-facebook-circle-fill"></i></a></a>
           <a href="#" class="social-link"><i class="ri-twitter-x-line"></i></a></a>
           <a href="#" class="social-link"><i class="ri-instagram-line"></i></a></a>
         </div>
@@ -376,6 +244,21 @@
       </div>
     </div>
   </footer>
+  <!-- Modal Item Details -->
+  <div class="modal-container" id="modal-content" x-show="open">
+    <div class="modal-box">
+      <a href="#" class="modal-icon" @click="open = false"><i class="ri-close-line"></i></a>
+      <div class="modal-content">
+        <img src="assets/images/product-img-coffee.png" alt="Product" />
+        <div class="product-content">
+          <h2 class="title-modal-content">Alowishus Coffee</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea et, commodi repellat facere ad repudiandae odit enim ducimus id atque.</p>
+          <h2 class="price-modal-content">$59.99</h2>
+          <a href="#">Orders Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!-- Javascript -->
   <script src="dist/js/script.js"></script>
